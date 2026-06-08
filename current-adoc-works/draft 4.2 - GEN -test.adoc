@@ -52,6 +52,7 @@ augment /if:interfaces/if:interface:
 Services, as described in IEEE Std 802.1AC and in 8.1 and specified in
 8.5, 8.7, and 8.8.
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -108,6 +109,7 @@ This seems to be a duplicate because of req. QOS-002 which defines the
 minimum number of Traffic Classes precisely: "The Ethernet Switch shall
 support 8 different levels of Traffic Classes."
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -135,6 +137,7 @@ architecture.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -164,6 +167,7 @@ frames and from 46 to 1504 bytes for VLAN tagged frames.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -191,6 +195,7 @@ forward switch.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -226,6 +231,7 @@ configuration.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -255,6 +261,7 @@ configuration REF-CONF-A.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -281,6 +288,7 @@ switch-dependent features of rapid spanning tree protocol (RSTP).
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -313,6 +321,7 @@ forwarding of other types of frames.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -342,6 +351,7 @@ MAC address of an authenticated peer to its port according to [2].
 |Note |Real-port doesn’t need to maintain peer MAC address. But,
 virtual-port does. Need to check on this.
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -391,6 +401,7 @@ and QoS queue
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -420,6 +431,7 @@ limited for each queue. The limits shall be configurable individually.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -456,8 +468,8 @@ duplicated on to a designated destination port.
 V1.0 has only GEN-013.
 
 Draft splits GEN-013 into 3 requirements.
-
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -498,8 +510,8 @@ disabled as described in requirement VLAN-009B
 V1.0 has only GEN-013.
 
 Draft splits GEN-013 into 3 requirements.
-
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -534,8 +546,8 @@ mirroring based on +
 V1.0 has only GEN-013.
 
 Draft splits GEN-013 into 3 requirements.
-
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -575,6 +587,7 @@ module: ietf-interfaces_
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -604,6 +617,7 @@ measured in LIFO shall be specified.
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -634,8 +648,8 @@ Remove this requirement and add this formulation at the end of chapter 1
 (scope): "This document does not focus on MACsec implementations
 according to [3]. For details, please refer to the outcomes of OPEN
 Alliance TC17 for Automotive Ethernet switches."
-
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -657,6 +671,7 @@ Alliance TC17 for Automotive Ethernet switches."
 
 |Note |
 |===
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -686,9 +701,7 @@ it shall be possible to turn this off.
 
 |Note |
 |===
-
-* +
-*
+<<<
 
 [width="100%",cols="25%,75%",options="header",]
 |===
@@ -726,3 +739,4 @@ module: ieee802-dot1q-bridge
 
 |Note |
 |===
+<<<
