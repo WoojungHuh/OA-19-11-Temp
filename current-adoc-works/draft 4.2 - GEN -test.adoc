@@ -1,0 +1,728 @@
+== 3.1 General Requirements (GEN)
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-001
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall implement all "5.1
+Required Capabilities" except "f) RSTP“ and “g) BPDUs” of the IEEE
+802.1D Standard [1].
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_001 Conformance to IEEE 802.1Q
+bridging requirements
+
+|Draft Requirement Text |The Ethernet Switch shall implement all MAC
+Bridge component requirements of [1], 5.13, except f) (RSTP) and g)
+(BPDUs).
+
+|Config Type & Attribute|
+* feature
+
+|Generic config |
+
+|YANG config a|
+[source,yang]
+----
+module: ieee802-dot1q-bridge
+	+--rw bridges
+	    +--rw bridge* [name]
+	    ...
+	    +--rw component* [name]
+	    ...
+	        +--ro bridge-port* if:interface-ref
+	        +--ro capabilities
+	        ...
+	        +--rw filtering-database
+	        ...
+	        +--rw permanent-database
+	...
+augment /if:interfaces/if:interface:
+	+--rw bridge-port
+	...
+----
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+* 802.1Q Cl5.13
+** d) Maintain the information required to support Basic Filtering
+Services, as described in IEEE Std 802.1AC and in 8.1 and specified in
+8.5, 8.7, and 8.8.
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-002
+|TC-11 Version |V1.0
+
+|V1.0 Requirement Text |The Ethernet Switch shall implement the optional
+capability "c) Multiple Traffic Classes" of the IEEE 802.1D Standard
+[1].
+
+|Draft Title |N/A
+
+|Draft Requirement Text |N/A
+
+|Config Type & Attribute a|
+* Static (RO, WO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config a|
+* ieee802-dot1q-types.yang
+
+[source,yang]
+----
+grouping priority-regeneration-table-grouping
+----
+
+* ieee802-dot1q-bridge.yang
+
+[source,yang]
+----
+augment /if:interfaces/if:interface:
+    +--rw bridge-port
+    ...
+    +--rw priority-regeneration
+        +--rw priority0? priority-type
+        +--rw priority1? priority-type
+        +--rw priority2? priority-type
+        +--rw priority3? priority-type
+        +--rw priority4? priority-type
+        +--rw priority5? priority-type
+        +--rw priority6? priority-type
+        +--rw priority7? priority-type
+----
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+Draft 1.3 Note:
+This seems to be a duplicate because of req. QOS-002 which defines the
+minimum number of Traffic Classes precisely: "The Ethernet Switch shall
+support 8 different levels of Traffic Classes."
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-003
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall use a non-blocking
+architecture.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_002 Non-blocking architecture
+
+|Draft Requirement Text |The Ethernet Switch shall use a non-blocking
+architecture.
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-004
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The overall bandwidth of the Ethernet Switch
+fabric has to be higher than the sum of bandwidth of all ingress ports.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_003 Aggregate bandwidth
+
+|Draft Requirement Text |The overall bandwidth of the Ethernet Switch
+has to be higher than the aggregate bandwidth of all external ports for
+Ethernet frames with MAC Client Data from 46 to 1500 bytes for untagged
+frames and from 46 to 1504 bytes for VLAN tagged frames.
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-005
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall operate as store and
+forward switch.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_004 Store and forward
+
+|Draft Requirement Text |The Ethernet Switch shall operate as store and
+forward switch.
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-006
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The boot time of the Ethernet Switch with
+internal PHYs and up to 16 ports total (including configuration via the
+host processor and startup time of internal PHYs)) from voltage reaches
+valid range until it is fully operational shall be less than 140 ms. See
+Section 4.1 for typical configuration REF-CONF-A.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_005 Boot time for reference
+configuration
+
+|Draft Requirement Text |"When an ECU is equipped with an Ethernet
+switch, it shall be possible to boot the Ethernet switch and load the
+reference configuration REF-CONF-A (see 5.1) within 140 ms, measured
+from the instance of time when the voltage provided to the ECU reaches
+valid range until it is forwarding according to the applied
+configuration.
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-007
+|TC-11 Version |V1.0
+
+|V1.0 Requirement Text |The boot time of the Ethernet Switch without
+internal PHYs and up to 16 ports total (including configuration via the
+host processor) from voltage reaches valid range until it’s fully
+operational shall be less than 50 ms. See Section 4.1 for typical
+configuration REF-CONF-A.
+
+|Draft Title |N/A
+
+|Draft Requirement Text |N/A
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-008
+|TC-11 Version |V1.0
+
+|V1.0 Requirement Text |The Ethernet Switch shall support the
+switch-dependent features of rapid spanning tree protocol (RSTP).
+
+|Draft Title |N/A
+
+|Draft Requirement Text |N/A
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-009
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall support IEEE 802.1X
+[2].
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_006 Selective forwarding of EAP
+messages.
+
+|Draft Requirement Text |"The Ethernet Switch shall support the
+capability to allow for only selective forwarding (ingress and egress)
+of Extensible Authentication Protocol (EAP) messages while blocking the
+forwarding of other types of frames.
+
+|Config Type & Attribute a|
+* Feature
+* Static
+* Dynamic
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-010
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall support pinning the
+address of an authenticated peer (IEEE 802.1X [2]) to its port.
+
+|Title |REQ_ETH_SWITCH_V2_L2_G_007 Binding of MAC address
+
+|Requirement Text |The Ethernet Switch shall support the binding of the
+MAC address of an authenticated peer to its port according to [2].
+
+|Config Type & Attribute a|
+* Static (RO, WO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |Real-port doesn’t need to maintain peer MAC address. But,
+virtual-port does. Need to check on this.
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-011
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text a|
+Specify the following performance characteristics of the implementation
+(buffer(s) for input and output) in the documentation of the Ethernet
+Switch:
+
+- Maximum Frame Buffer Size (overall) [bytes]
+
+- Maximum Frame Buffer Size depending on frame size in bytes [number of
+frames]. This could be a function or a table.
+
+- Configuration options to distribute and limit the buffer size per port
+and CoS queue.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_008 Frame buffer performance
+characteristics
+
+|Draft Requirement Text a|
+The following performance characteristics of the implementation
+(buffer(s) for input and output) shall be specified in the documentation
+of the Ethernet Switch:
+
+- Maximum Frame Buffer Size (overall) [bytes], +
+- Maximum Frame Buffer Size depending on frame size in bytes [number of
+frames]. This could be a function or a table, +
+- Configuration options to distribute and limit the buffer size per port
+and QoS queue
+
+|Config Type & Attribute a|
+* Feature
+* Static (RO, WO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-012
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The allocation of memory or length shall be
+limited for each queue. The limits shall be configurable individually.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_009 Queue buffer size limiting
+
+|Draft Requirement Text |The allocation of memory or length shall be
+limited for each queue. The limits shall be configurable individually.
+
+|Config Type & Attribute a|
+* Static (RO, WO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-013A
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall support mirroring for
+each port. This includes mirroring frames from multiple ports to a
+single port with filtering depending on Port, SA/DA MAC Addresses and
+VLAN membership. This includes local and remote mirroring. It shall be
+possible for remote mirroring to change the VLAN-ID. At least 16 rules
+shall be supported, each being applicable to an arbitrary subset of the
+overall ports (e.g. by using a port bitmask).
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_010 Port mirroring
+
+|Draft Requirement Text |The Ethernet Switch shall support port
+mirroring such that traffic from the configurable ingress ports can be
+duplicated on to a designated destination port.
+
+|Config Type & Attribute a|
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+V1.0 has only GEN-013.
+
+Draft splits GEN-013 into 3 requirements.
+
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-013B
+|TC-11 Version |Draft (1.3)
+
+|V1.0 Requirement Text |N/A
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_011 Dedicated VLAN for mirrored
+traffic
+
+|Draft Requirement Text a|
+The Ethernet Switch shall support at least one of the following two
+methods to put mirrored traffic from configurable ingress ports in a
+configurable VLAN on to a designated destination port:
+
+1.Replacing the VID (or for untagged frames the assigned PVID) with a
+configurable mirroring VID.
+
+2.Adding an additional outer VLAN tag with TPID 0x8100; with this
+method, the suppression of frames with two TPID 0x8100 tags needs to be
+disabled as described in requirement VLAN-009B
+
+|Config Type & Attribute a|
+* Static (RO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+V1.0 has only GEN-013.
+
+Draft splits GEN-013 into 3 requirements.
+
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-013C
+|TC-11 Version |Draft (1.3)
+
+|V1.0 Requirement Text |N/A
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_012 Ingress mirroring
+
+|Draft Requirement Text |The Ethernet Switch shall support ingress
+mirroring based on +
+- Ingress Port, +
+- Ingress Port and Destination MAC Address, +
+- Ingress Port and Source MAC Address, and +
+- Ingress Port and VID
+
+|Config Type & Attribute a|
+* Static (RO)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+V1.0 has only GEN-013.
+
+Draft splits GEN-013 into 3 requirements.
+
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-014
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall support
+disabling/enabling incoming and outgoing traffic per port on MAC Layer
+independently of the link state of the physical layer.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_013 Disabling/enabling port
+
+|Draft Requirement Text |The Ethernet Switch shall support
+disabling/enabling incoming and outgoing traffic per port on MAC Layer
+independently of the link state of the physical layer.
+
+|Config Type & Attribute a|
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config a|
+[source,yang]
+----
+module: ietf-interfaces_
+    +--rw interfaces
+        +--rw interface* [name]
+            +--rw name string
+            +--rw description? string
+            +--rw type identityref
+            +--rw enabled? Boolean
+----
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-015
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text a|
+Specify the following performance characteristics of the implementation:
+
+• MAC to MAC delay
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_014 MAC-to-MAC delay
+
+|Draft Requirement Text |The MAC-to-MAC delay of the Ethernet Switch
+measured in LIFO shall be specified.
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-016
+|TC-11 Version |V1.0
+
+|V1.0 Requirement Text |The Ethernet Switch may support IEEE 802.1AE
+MACsec [3].
+
+|Draft Title |N/A
+
+|Draft Requirement Text |N/A
+
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note a|
+Draft (1.3)
+Remove this requirement and add this formulation at the end of chapter 1
+(scope): "This document does not focus on MACsec implementations
+according to [3]. For details, please refer to the outcomes of OPEN
+Alliance TC17 for Automotive Ethernet switches."
+
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-017
+|TC-11 Version |V1.0
+|V1.0 Requirement Text |The Ethernet Switch may support jumbo frames.
+|Draft Title |N/A
+|Draft Requirement Text |N/A
+|Config Type & Attribute a|
+* Feature
+
+|Generic config |
+
+|YANG config |
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-018
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |If the Ethernet Switch supports jumbo frames, it
+shall be possible to turn this off.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_015 Jumbo frames
+
+|Draft Requirement Text |If the Ethernet Switch supports jumbo frames,
+it shall be possible to turn this off.
+
+|Config Type & Attribute a|
+* Static (RW)
+* Dynamic (RW)
+
+|Generic config |
+
+|YANG config |
+#Vendor specific?#
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
+
+* +
+*
+
+[width="100%",cols="25%,75%",options="header",]
+|===
+|ID |GEN-019
+|TC-11 Version |V1.0 & Draft (1.3)
+
+|V1.0 Requirement Text |The Ethernet Switch shall allow to uniquely
+identify the device and its revision (e.g. by a Device ID or similar).
+This shall be accessible via the configuration interface.
+
+|Draft Title |REQ_ETH_SWITCH_V2_L2_G_016 Device ID
+
+|Draft Requirement Text |The Ethernet Switch shall allow to uniquely
+identify the device and its revision (e.g. by a Device ID or similar).
+This shall be accessible via the configuration interface.
+
+|Config Type & Attribute a|
+* Static (RO)
+
+|Generic config |
+
+|YANG config a|
+[source,yang]
+----
+module: ieee802-dot1q-bridge
+	+--rw bridges
+	    +--rw bridge* [name]
+	        +--rw name dot1qtypes:name-type
+	...
+----
+
+|FLYNC config |
+
+|AUTOSAR config |
+
+|Note |
+|===
